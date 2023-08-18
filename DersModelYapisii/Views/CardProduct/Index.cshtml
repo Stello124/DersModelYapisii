@@ -1,0 +1,51 @@
+﻿@model List<DersModelYapisi.Models.CartProduct>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sepet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Sepet</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Ürün Adı</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Adet</th>
+                    <th scope="col">Toplam Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Product.Price.ToString("C")</td>
+                        <td>@item.Quantity</td>
+                        <td>@(item.Quantity * item.Price).ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="table-light">
+                    <td colspan="3" class="text-end">Toplam Tutar:</td>
+                    <td>@Model.Sum(item => item.Quantity * item.Price).ToString("C")</td>
+                </tr>
+                <tr class="table-light">
+                    <td colspan="3" class="text-end">KDV (%18):</td>
+                    <td>@(Model.Sum(item => item.Quantity * item.Price) * 0.18).ToString("C")</td>
+                </tr>
+                <tr class="table-light">
+                    <td colspan="3" class="text-end">Toplam Tutar (KDV Dahil):</td>
+                    <td>@(Model.Sum(item => item.Quantity * item.Price) * 1.18).ToString("C")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</body>
+</html>
