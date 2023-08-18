@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DersModelYapisii.Controllers
 {
-    public class CartController : Controller
+    public class CardProductController : Controller
     {
         public IActionResult Index()
         {
@@ -56,9 +56,9 @@ namespace DersModelYapisii.Controllers
                 Price = product3.Price
             };
 
-            var cartProducts = new List<CardProduct> { cartProduct1, cartProduct2, cartProduct3 };
+            var cardProduct = new List<CardProduct> { cartProduct1, cartProduct2, cartProduct3 };
 
-            return View(cartProducts);
+            return View(cardProduct);
         }
 
 
