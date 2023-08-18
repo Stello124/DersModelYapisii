@@ -1,4 +1,8 @@
-﻿@model IEnumerable<DersModelYapisii.Models.CardProduct>
+﻿@model List<DersModelYapisii.Models.CardProduct>
+
+@{
+    ViewBag.Title = "Sepet";
+}
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +14,7 @@
 
     <div class="container mt-5">
         <h2 class="mb-4">Sepet</h2>
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">Ürün Adı</th>
@@ -24,24 +28,28 @@
                 {
                     <tr>
                         <td>@item.Product.Name</td>
-                        <td>@item.Product.Price.ToString("C")</td>
+                        <td>@item.Product.Price</td>
                         <td>@item.Quantity</td>
-                        <td>@(item.Quantity * item.Price).ToString("C")</td>
+                        <td>@(item.Quantity * item.Price)</td>
                     </tr>
                 }
             </tbody>
             <tfoot>
                 <tr class="table-light">
                     <td colspan="3" class="text-end">Toplam Tutar:</td>
-                    <td>@Model.Sum(item => item.Quantity * item.Price).ToString("C")</td>
+                    <td>@Model.Sum(item => item.Quantity * item.Price)</td>
                 </tr>
                 <tr class="table-light">
                     <td colspan="3" class="text-end">KDV (%18):</td>
-                    <td>@(Model.Sum(item => item.Quantity * item.Price) * 0.18).ToString("C")</td>
+                    <td>@(Model.Sum(item => item.Quantity * item.Price) * 0.18m)</td>
                 </tr>
                 <tr class="table-light">
                     <td colspan="3" class="text-end">Toplam Tutar (KDV Dahil):</td>
-                    <td>@(Model.Sum(item => item.Quantity * item.Price) * 1.18).ToString("C")</td>
+                    <td>@(Model.Sum(item => item.Quantity * item.Price) * 1.18m)</td>
                 </tr>
             </tfoot>
         </table>
+    </div>
+
+</body>
+</html>
